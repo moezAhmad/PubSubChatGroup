@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
+import "./Chat.css";
 
 const Chat = () => {
   const [socket, setSocket] = useState(null);
@@ -48,18 +49,25 @@ const Chat = () => {
   };
 
   return (
-    <div>
+    <div className="chat-container">
       <h1>Chat Group</h1>
       <ul>
         {messages.map((message, index) => (
-          <li key={index}>
+          <li key={index} className="chat-message">
             {message.username}: {message.message}
           </li>
         ))}
       </ul>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={inputValue} onChange={handleInputChange} />
-        <button type="submit">Send</button>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          className="chat-input"
+        />
+        <button type="submit" className="chat-button">
+          Send
+        </button>
       </form>
     </div>
   );
